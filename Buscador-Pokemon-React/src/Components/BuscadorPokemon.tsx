@@ -40,7 +40,7 @@ export const BuscadorPokemon: React.FC = () => {
         };
 
         registrarEntrenador(nuevo);
-        navigate('/pokemon');
+        navigate('/buscador');
     };
 
     return (

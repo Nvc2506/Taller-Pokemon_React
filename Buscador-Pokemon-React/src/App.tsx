@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, NavLink, Navigate } from 'react-router-dom';
 import { PokemonProvider } from './context/PokemonContext';
-import { RegistroUsuario } from './components/RegistroUsuario';
-import { BuscadorPokemon } from './components/BuscadorPokemon';
-import { InventarioPokemon } from './components/InventarioPokemon';
+import { RegistroUsuario } from './Components/RegistroUsuario';
+import { BuscadorPokemon } from './Components/BuscadorPokemon';
+import { InventarioPokemon } from './Components/InventarioPokemon';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
           <h1>Registro de entrenadores y Pokemon en React</h1>
 
           <nav>
-            <NavLink to="/registro" className={({ isActive }) => (isActive ? 'active-tab' : '')}>Registro</NavLink>
+            <NavLink to="/pokemon" className={({ isActive }) => (isActive ? 'active-tab' : '')}>Registro</NavLink>
             <NavLink to="/buscador" className={({ isActive }) => (isActive ? 'active-tab' : '')}>Pokemon</NavLink>
             <NavLink to="/inventario" className={({ isActive }) => (isActive ? 'active-tab' : '')}>Inventario</NavLink>
           </nav>
@@ -20,8 +20,8 @@ function App() {
 
         <main>
           <Routes>
-            <Route path="/" element={<Navigate to="/registro" replace />} />
-            <Route path="/registro" element={<RegistroUsuario />} />
+            <Route path="/" element={<Navigate to="/pokemon" replace />} />
+            <Route path="/pokemon" element={<RegistroUsuario />} />
             <Route path="/buscador" element={<BuscadorPokemon />} />
             <Route path="/inventario" element={<InventarioPokemon />} />
           </Routes>

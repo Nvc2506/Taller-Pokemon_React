@@ -35,7 +35,7 @@ export const RegistroUsuario: React.FC = () => {
     };
 
     registrarEntrenador(nuevo);
-    navigate('/buscador');
+    navigate('/pokemon');
   };
 
   return (
@@ -180,6 +180,6 @@ export const RegistroUsuario: React.FC = () => {
     </div>
   );
 };
-s                 
+               
 
             
