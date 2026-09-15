@@ -35,7 +35,7 @@ export const RegistroUsuario: React.FC = () => {
     };
 
     registrarEntrenador(nuevo);
-    navigate('/pokemon');
+    navigate('/buscador');
   };
 
   return (
