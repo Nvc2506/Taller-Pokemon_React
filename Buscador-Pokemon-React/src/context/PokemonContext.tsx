@@ -96,7 +96,7 @@ export const PokemonProvider : React.FC<{ children : React.ReactNode}> = ({ chil
         if (!entrenadorActivo) return;
         const filtrado = mochilaActual.filter(p => p.id !== pokemonId);
         setMochilaActual(filtrado);
-        localStorage.setItem(`mochila_${entrenadorActivo.id}`, JSON.stringify(actualizada));
+        localStorage.setItem(`mochila_${entrenadorActivo.id}`, JSON.stringify(filtrado));
     };
 
     return (

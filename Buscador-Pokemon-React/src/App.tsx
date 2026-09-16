@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, NavLink, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, NavLink, Navigate } from 'react-router-dom';
 import { PokemonProvider } from './context/PokemonContext';
 import { RegistroUsuario } from './components/RegistroUsuario';
 import { BuscadorPokemon } from './components/BuscadorPokemon';
@@ -20,6 +20,7 @@ function App() {
 
         <main>
           <Routes>
+            <Route path="/" element={<Navigate to="/registro" replace />} />
              <Route path="/registro" element={<RegistroUsuario />} />
             <Route path="/buscador" element={<BuscadorPokemon />} />
             <Route path="/inventario" element={<InventarioPokemon />} />
