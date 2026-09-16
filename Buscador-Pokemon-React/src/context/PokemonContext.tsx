@@ -5,12 +5,12 @@ export interface Usuario {
     nombreCompleto: string;
     documentos: { tipo: string, numero:string};
     fechaNacimiento: string;
+    tel?: string;
     correo: string;
+    paisdom?: string;
+    ciudadDom?: string;
     datosPersonales: boolean;
-    fechaRegistro: string,
-
-
-
+    fechaRegistro: string;
 }
 
 export interface PokemonTarjeta {

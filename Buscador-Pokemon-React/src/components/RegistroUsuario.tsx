@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { usePokemon, type Usuario } from '../context/PokemonContext';
 
 export const RegistroUsuario: React.FC = () => {
-  const { registrarEntrenador } = usePokemon();
+  const { entrenadores, entrenadorActivo, registrarEntrenador, seleccionarEntrenador } = usePokemon();
   const navigate = useNavigate();
 
   const [nombre, setNombre] = useState('');
@@ -20,7 +20,7 @@ export const RegistroUsuario: React.FC = () => {
     e.preventDefault();
 
     if (!datosPersonales) {
-      alert('Aceptar política de privacidad');
+      alert('Debes aceptar la política de tratamiento de datos.');
       return;
     }
 
@@ -30,6 +30,8 @@ export const RegistroUsuario: React.FC = () => {
       documentos: { tipo: tipoDoc, numero: dni },
       fechaNacimiento,
       correo,
+      paisdom: pais,
+      ciudadDom: ciudad,
       datosPersonales,
       fechaRegistro: new Date().toLocaleDateString(),
     };
@@ -132,7 +134,7 @@ export const RegistroUsuario: React.FC = () => {
 
           <div>
             <label htmlFor="ciudad">Ciudad de domicilio:</label>
-            <select id="ciudad" value={ciudad} onChange={(e) => setCiudad(e.target.value)}>
+            <select id="ciudad" value={ciudad} onChange={(e) => setCiudad(e.target.value)} required>
               <option value="">Seleccione la ciudad...</option>
               <optgroup label="Colombia">
                 <option value="1101">Bogotá D.C</option>
@@ -177,9 +179,29 @@ export const RegistroUsuario: React.FC = () => {
           </div>
         </form>
       </div>
+
+      {entrenadores.length > 0 && (
+        <div>
+          <h3>Cambiar Entrenador</h3>
+          <div>
+            {entrenadores.map((user) => (
+              <button key={user.id} type="button" onClick={() => seleccionarEntrenador(user)} style={{
+                  backgroundColor: entrenadorActivo?.id === user.id ? '#FF00FF' : '#E0E0E0',
+                  color: entrenadorActivo?.id === user.id ? 'white' : 'black',
+                  padding: '6px 12px',
+                  margin: '4px',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                }}
+              >
+                {user.nombreCompleto}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
-               
 
-            

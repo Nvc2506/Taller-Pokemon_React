@@ -1,5 +1,7 @@
 {
-  "dependencies": {
-    "react-router-dom": "^7.18.3"
+  "scripts": {
+    "dev": "npm --prefix Buscador-Pokemon-React run dev",
+    "build": "npm --prefix Buscador-Pokemon-React run build",
+    "preview": "npm --prefix Buscador-Pokemon-React run preview"
   }
 }
