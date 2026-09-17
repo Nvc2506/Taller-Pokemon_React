@@ -4,11 +4,11 @@ import {usePokemon, type PokemonTarjeta } from '../context/PokemonContext'
 export const BuscadorPokemon: React.FC = () =>{
 
     const { entrenadorActivo, guardarPokemonMochila } = usePokemon();
-
     const [busqueda, setBusqueda] = useState('');
     const [pokemonActual, setPokemonActual] = useState<PokemonTarjeta | null>(null);
     const [mensajeError, setMensajeError] = useState<string | null>(null);
     const [cargando, setCargando] = useState(false);
+    
 
     const buscarPokemon = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -30,23 +30,31 @@ export const BuscadorPokemon: React.FC = () =>{
                 name: datos.name.toUpperCase(),
                 image: datos.sprites.front_default,
                 type: datos.types[0].type.name,
-                BaseExperience: datos.base_experience,
+                baseExperience: datos.base_experience,
                 esFavorito: false
             });
-        } catch (error: any) {
+        } catch (error: unknown) {
             setPokemonActual(null);
-            setMensajeError(error.message);
+            setMensajeError(error instanceof Error ? error.message : 'Ha ocurrido un error');
         } finally {
             setCargando(false);
         }
 
     };
 
+     const clickGuardar= () => {
+
+        if(!entrenadorActivo){
+            alert('Debes seleccionar o registrar un entrenador')
+        }
+
     if(pokemonActual){
-        guardarPokemonMochila(pokemonActual);
-        alert(`El Pokemon ${pokemonActual} es guardado en la mochila de ${entrenadorActivo?.nombreCompleto}`);
+     guardarPokemonMochila(pokemonActual);
+        alert(`El Pokemon ${pokemonActual.name} es guardado en la mochila${entrenadorActivo?.nombreCompleto}`);
+
     }
 
+    }
 
 return(
 <div>
@@ -64,11 +72,33 @@ return(
             <button type='submit' disabled={cargando}> {cargando ? 'Escaneando...' : 'Buscar'}
             </button>
         </form>
+        {mensajeError && <p role="alert">{mensajeError}</p>}
 
 {pokemonActual && (
     <div>
         <h3>{pokemonActual.name}</h3>
         <img src={pokemonActual.image}></img>
+
+        <p>
+            Elemento:{''}
+            <span style ={{ backgroundColor:
+            pokemonActual.type==='fire' ? '#ff0000':
+            pokemonActual.type==='water'? '#024aff':
+            pokemonActual.type=== 'grass'? '#02ff30':
+            pokemonActual.type==='electric'? '#e5e757': '#cdcace',
+        color: 'white',
+        padding:'3px 8px',
+        borderRadius:'10px'
+            }}> 
+
+        {pokemonActual.type.toUpperCase()}
+            
+            </span>
+        </p>
+        <p>Experiencias Base:<strong>{pokemonActual.baseExperience}</strong></p>
+        <button type="button" className ="btn_capturar" onClick={clickGuardar} disabled={!entrenadorActivo}>
+            Guardar en la mochila
+        </button>
     </div>
 )}
 </div>
