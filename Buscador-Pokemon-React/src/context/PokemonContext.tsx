@@ -38,7 +38,8 @@ interface PokemonContextType {
 
 const PokemonContext = createContext<PokemonContextType | undefined> (undefined);
 
-export const PokemonProvider : React.FC<{ children : React.ReactNode}> = ({ children }) => {
+export const PokemonProvider
+ : React.FC<{ children : React.ReactNode}> = ({ children }) => {
     const [entrenadores,setEntrenadores] = useState<Usuario[]>([]);
     const [entrenadorActivo,setEntrenadorActivo] = useState<Usuario | null> (null);
     const [mochilaActual,setMochilaActual] = useState<PokemonTarjeta[]>([]);

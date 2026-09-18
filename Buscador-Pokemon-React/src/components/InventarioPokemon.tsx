@@ -1,5 +1,5 @@
 import React  from 'react';
-import {PokemonProvider, usePokemon, type PokemonTarjeta } from '../context/PokemonContext'
+import { usePokemon } from '../context/PokemonContext'
 
 export const InventarioPokemon: React.FC = () =>{
 
